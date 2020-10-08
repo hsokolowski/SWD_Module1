@@ -161,16 +161,7 @@ namespace Module1_SWD
                     {
                         if (!checkBox1.Checked)
                         {
-                            string tmp = line.Replace(';', ' ');
-                            string[] splitFirstRow =  tmp.Split(null);
-                            splitHeaders = new string[splitFirstRow.Length];
-                            for (var i = 0; i < splitFirstRow.Length; i++)
-                            {
-                                string customAttributeName = "Attribute_" + i;
-                                headers += customAttributeName + " ";
-                                orginalAtributesToRecord.Add(customAttributeName, new List<object>());
-                                splitHeaders[i] = customAttributeName;
-                            }
+                            splitHeaders = CreateCustomHeaders(line, ref headers);
                             SplitRecordsLine(line, orginalAtributesToRecord, splitHeaders);
                         }
                         else 
@@ -185,6 +176,23 @@ namespace Module1_SWD
 
                 }
             }
+        }
+
+        private static string[] CreateCustomHeaders(string line, ref string headers)
+        {
+            string[] splitHeaders;
+            string tmp = line.Replace(';', ' ');
+            string[] splitFirstRow = tmp.Split(null);
+            splitHeaders = new string[splitFirstRow.Length];
+            for (var i = 0; i < splitFirstRow.Length; i++)
+            {
+                string customAttributeName = "Attribute_" + i;
+                headers += customAttributeName + " ";
+                orginalAtributesToRecord.Add(customAttributeName, new List<object>());
+                splitHeaders[i] = customAttributeName;
+            }
+
+            return splitHeaders;
         }
 
         private static void SplitRecordsLine(string line, Dictionary<string, List<object>> orginalAtributesToRecord, string[] splitHeaders)
