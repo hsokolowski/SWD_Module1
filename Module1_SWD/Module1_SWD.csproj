@@ -8,7 +8,6 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Module1_SWD</RootNamespace>
     <AssemblyName>Module1_SWD</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>

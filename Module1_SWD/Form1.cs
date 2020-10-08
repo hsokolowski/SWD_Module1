@@ -28,6 +28,7 @@ namespace Module1_SWD
                 CheckPathExists = true
             };
 
+            
             if (theDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -52,7 +53,11 @@ namespace Module1_SWD
 
         private void PrintMatrix(Dictionary<string, List<object>> dictionary)
         {
+            dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
             dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Refresh();
 
             var keyCount = dictionary.Keys.Count;
             dataGridView1.ColumnCount = keyCount;
@@ -63,6 +68,7 @@ namespace Module1_SWD
             var max = 0;
             foreach (var VARIABLE in dictionary)
             {
+                dataGridView1.Columns[counter].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dataGridView1.Columns[counter++].Name = VARIABLE.Key;
                 tmpList.Add(VARIABLE.Value);
                 var tmpMax = VARIABLE.Value.Count;
@@ -138,8 +144,9 @@ namespace Module1_SWD
             }
         }
 
-        private static void SaveDataToDictionary(Stream myStream)
+        private void SaveDataToDictionary(Stream myStream)
         {
+            orginalAtributesToRecord = new Dictionary<string, List<object>>();
             string headers = null;
             string[] splitHeaders = null;
 
@@ -149,12 +156,33 @@ namespace Module1_SWD
             {
                 if (!line.StartsWith("#") && line != "")
                 {
+
                     if (headers == null)
                     {
-                        headers = InitialHeaders(line, orginalAtributesToRecord, out splitHeaders);
-                        continue;
+                        if (!checkBox1.Checked)
+                        {
+                            string tmp = line.Replace(';', ' ');
+                            string[] splitFirstRow =  tmp.Split(null);
+                            splitHeaders = new string[splitFirstRow.Length];
+                            for (var i = 0; i < splitFirstRow.Length; i++)
+                            {
+                                string customAttributeName = "Attribute_" + i;
+                                headers += customAttributeName + " ";
+                                orginalAtributesToRecord.Add(customAttributeName, new List<object>());
+                                splitHeaders[i] = customAttributeName;
+                            }
+                            SplitRecordsLine(line, orginalAtributesToRecord, splitHeaders);
+                        }
+                        else 
+                        {
+                            headers = InitialHeaders(line, orginalAtributesToRecord, out splitHeaders);
+                        }
                     }
-                    SplitRecordsLine(line, orginalAtributesToRecord, splitHeaders);
+                    else
+                    {
+                        SplitRecordsLine(line, orginalAtributesToRecord, splitHeaders);
+                    }
+
                 }
             }
         }
@@ -179,6 +207,10 @@ namespace Module1_SWD
                 orginalAtributesToRecord.Add(splitHeaders[i], new List<object>());
             }
             return headers;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
         }
     }
 }
