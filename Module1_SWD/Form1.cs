@@ -48,6 +48,7 @@ namespace Module1_SWD
                 }
             }
 
+            SetSerializeDataGrid(orginalAtributesToRecord);
             PrintMatrix(orginalAtributesToRecord);
         }
 
@@ -89,58 +90,14 @@ namespace Module1_SWD
             }
         }
 
-        public static DictionaryBindingList<TKey, TValue> ToBindingList<TKey, TValue>(IDictionary<TKey, TValue> data)
+        private void SetSerializeDataGrid(Dictionary<string, List<object>> dictionary)
         {
-            return new DictionaryBindingList<TKey, TValue>(data);
-        }
-
-        public class DictionaryBindingList<TKey, TValue>
-            : BindingList<Pair<TKey, TValue>>
-        {
-            private readonly IDictionary<TKey, TValue> data;
-            public DictionaryBindingList(IDictionary<TKey, TValue> data)
+            dataGridView2.DataSource = null;
+            dataGridView2.Rows.Clear();
+            dataGridView1.Dock = DockStyle.Fill;
+            foreach (var VARIABLE in dictionary)
             {
-                this.data = data;
-                Reset();
-            }
-            public void Reset()
-            {
-                bool oldRaise = RaiseListChangedEvents;
-                RaiseListChangedEvents = false;
-                try
-                {
-                    Clear();
-                    foreach (TKey key in data.Keys)
-                    {
-                        Add(new Pair<TKey, TValue>(key, data));
-                    }
-                }
-                finally
-                {
-                    RaiseListChangedEvents = oldRaise;
-                    ResetBindings();
-                }
-            }
-        }
-        public sealed class Pair<TKey, TValue>
-        {
-            private readonly TKey key;
-            private readonly IDictionary<TKey, TValue> data;
-            public Pair(TKey key, IDictionary<TKey, TValue> data)
-            {
-                this.key = key;
-                this.data = data;
-            }
-            public TKey Key { get { return key; } }
-            public TValue Value
-            {
-                get
-                {
-                    TValue value;
-                    data.TryGetValue(key, out value);
-                    return value;
-                }
-                set { data[key] = value; }
+                dataGridView2.Rows.Add(VARIABLE.Key);
             }
         }
 
