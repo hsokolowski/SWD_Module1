@@ -22,10 +22,10 @@ namespace Module1_SWD
             Console.WriteLine(attributesToRecords.Key);
             foreach (Object value in attributesToRecords.Value)
             {
-                System.Console.WriteLine(value);
+                Console.WriteLine(value);
             }
 
-            System.Console.WriteLine();
+            Console.WriteLine();
         }
     }
 }

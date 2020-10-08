@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Module1_SWD
@@ -52,8 +53,6 @@ namespace Module1_SWD
         private void PrintMatrix(Dictionary<string, List<object>> dictionary)
         {
             dataGridView1.Dock = DockStyle.Fill;
-            //var bl = ToBindingList(dictionary);
-            //dataGridView1.DataSource = bl;
 
             var keyCount = dictionary.Keys.Count;
             dataGridView1.ColumnCount = keyCount;
@@ -61,23 +60,27 @@ namespace Module1_SWD
 
             List<List<object>> tmpList = new List<List<object>>();
             var counter = 0;
+            var max = 0;
             foreach (var VARIABLE in dictionary)
             {
                 dataGridView1.Columns[counter++].Name = VARIABLE.Key;
                 tmpList.Add(VARIABLE.Value);
-                dataGridView1.Rows.Add(VARIABLE.Value);
-            }
-
-
-            foreach (var VARIABLE in tmpList)
-            {
-                for (int i = 0; i < counter; i++)
+                var tmpMax = VARIABLE.Value.Count;
+                if (tmpMax > max)
                 {
-                    
+                    max = tmpMax;
                 }
             }
-            
-            
+
+            for (int i = 0; i < max; i++)
+            {
+                List<object> row = new List<object>();
+                for (int j = 0; j < tmpList.Count; j++)
+                {
+                    row.Add(tmpList.ElementAt(j)[i]);
+                }
+                dataGridView1.Rows.Add(row.ToArray());
+            }
         }
 
         public static DictionaryBindingList<TKey, TValue> ToBindingList<TKey, TValue>(IDictionary<TKey, TValue> data)
