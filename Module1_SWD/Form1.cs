@@ -94,7 +94,7 @@ namespace Module1_SWD
         {
             dataGridView2.DataSource = null;
             dataGridView2.Rows.Clear();
-            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView2.Dock = DockStyle.Fill;
             foreach (var VARIABLE in dictionary)
             {
                 dataGridView2.Rows.Add(VARIABLE.Key);
@@ -119,7 +119,7 @@ namespace Module1_SWD
                         if (!checkBox1.Checked)
                         {
                             splitHeaders = CreateCustomHeaders(line, ref headers);
-                            SplitRecordsLine(line, orginalAtributesToRecord, splitHeaders);
+                            DataFileUtils.SplitRecordsLine(line, orginalAtributesToRecord, splitHeaders);
                         }
                         else 
                         {
@@ -128,7 +128,7 @@ namespace Module1_SWD
                     }
                     else
                     {
-                        SplitRecordsLine(line, orginalAtributesToRecord, splitHeaders);
+                        DataFileUtils.SplitRecordsLine(line, orginalAtributesToRecord, splitHeaders);
                     }
 
                 }
@@ -152,16 +152,6 @@ namespace Module1_SWD
             return splitHeaders;
         }
 
-        private static void SplitRecordsLine(string line, Dictionary<string, List<object>> orginalAtributesToRecord, string[] splitHeaders)
-        {
-            string[] split = line.Split(null);
-            for (int i = 0; i < split.Length; i++)
-            {
-                List<object> tmpRecords;
-                orginalAtributesToRecord.TryGetValue(splitHeaders[i], out tmpRecords);
-                tmpRecords.Add(split[i]);
-            }
-        }
 
         private static string InitialHeaders(string line, Dictionary<string, List<object>> orginalAtributesToRecord, out string[] splitHeaders)
         {
@@ -177,5 +167,45 @@ namespace Module1_SWD
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+            for (var i = 0; i < dataGridView2.Rows.Count; i++)
+            {
+                var dataGridViewRow = dataGridView2.Rows[i];
+                var columns = dataGridViewRow.Cells;
+
+                
+                // Kolumna 0 to nazwa atrybutu
+                var attributeName = (string) dataGridViewRow.Cells[0].Value;
+                // Kolumna 1 i 2 to box czy chcemy wykonac deskretyzacje oraz wartosc range 
+                if (columns[1].Value != null && columns[2].Value != null)
+                {
+                    bool isBoxChecked = (bool) dataGridViewRow.Cells[1].Value;
+                    if (isBoxChecked)
+                    {
+                        List<decimal> discretization = MathUtils.Discretization(orginalAtributesToRecord[attributeName].Cast<decimal>().ToList(), Int32.Parse((string)dataGridViewRow.Cells[2].Value));
+                        orginalAtributesToRecord.Remove(attributeName);
+                        orginalAtributesToRecord.Add(attributeName+"_D",discretization.Cast<Object>().ToList());
+                    }
+                }
+                // Kolumna 3 to box czy chcemy zamienic wartosci tekstowe na numeryczne 
+                else if (columns[3].Value != null)
+                {
+                    bool isBoxChecked = (bool) dataGridViewRow.Cells[3].Value;
+                    bool alphabeticalOrder = true;
+                    if (isBoxChecked)
+                    {
+                        KeyValuePair<string,List<object>> changeValuesToNumeric = RecordUtils.ChangeValuesToNumeric(attributeName,orginalAtributesToRecord[attributeName],alphabeticalOrder);
+                        orginalAtributesToRecord.Remove(attributeName);
+                        orginalAtributesToRecord.Add(attributeName,changeValuesToNumeric.Value);
+                    }
+                }
+            }
+
+            PrintMatrix(orginalAtributesToRecord);
+        }
+
     }
 }

@@ -51,7 +51,7 @@ namespace Module1_SWD
             return recordsByAttribute;
         }
 
-        private static void SplitRecordsLine(string line, Dictionary<string, List<object>> attributesToRecords,
+        public static void SplitRecordsLine(string line, Dictionary<string, List<object>> attributesToRecords,
             string[] splitHeaders)
         {
             string[] split = line.Split(null);

@@ -6,7 +6,7 @@ namespace Module1_SWD
 {
     public class RecordUtils
     {
-        private static KeyValuePair<string, List<object>> ChangeValuesToNumeric(
+        public static KeyValuePair<string, List<object>> ChangeValuesToNumeric(
             string oldLabel,
             List<object> attributesToRecords,
             bool alphabetical)
