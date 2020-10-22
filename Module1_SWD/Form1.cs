@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -20,7 +21,7 @@ namespace Module1_SWD
             InitializeComponent();
             numericUpDown1.Maximum = 100;
             numericUpDown1.Minimum = 1;
-
+            
             //chart1.Series["s1"].Points.AddXY(0, 8, 21, 12,19,13,14); //avg/ mediana
         }
 
@@ -108,6 +109,9 @@ namespace Module1_SWD
             {
                 dataGridView2.Rows.Add(VARIABLE.Key);
                 domainUpDown1.Items.Add(VARIABLE.Key);
+                domainUpDown2.Items.Add(VARIABLE.Key);
+                domainUpDown3.Items.Add(VARIABLE.Key);
+                domainUpDown4.Items.Add(VARIABLE.Key);
             }
 
             domainUpDown1.SelectedIndex = 0;
@@ -328,6 +332,36 @@ namespace Module1_SWD
             //
             // string output = p.StandardOutput.ReadToEnd();
             // p.WaitForExit();
+        }
+
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var value1 = domainUpDown2.SelectedItem;
+            var value2 = domainUpDown3.SelectedItem;
+            var classDec = domainUpDown4.SelectedItem;
+
+            var data1 = orginalAtributesToRecord[value1.ToString()];
+            var data2 = orginalAtributesToRecord[value2.ToString()];
+
+            var decisionClasses = orginalAtributesToRecord[classDec.ToString()].Distinct();
+            var allDecisionClasses = orginalAtributesToRecord[classDec.ToString()];
+
+            chart1.ChartAreas[0].AxisX.Title = value1.ToString();
+            chart1.ChartAreas[0].AxisY.Title = value2.ToString();
+            chart1.Series.Clear();
+            for (int i = 0; i < decisionClasses.Count(); i++)
+            {
+                chart1.Series.Add(decisionClasses.ElementAt(i).ToString());
+                chart1.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+                chart1.Series[i].LegendText = decisionClasses.ElementAt(i).ToString();
+                chart1.Series[i].Points.Clear();
+            }
+            
+            for (int i = 0; i < data1.Count; i++)
+            {
+                chart1.Series[allDecisionClasses.ElementAt(i).ToString()].Points.AddXY(data1[i], data2[i]);
+            }
         }
     }
 }
