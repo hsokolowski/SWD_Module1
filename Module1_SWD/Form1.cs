@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -112,6 +110,7 @@ namespace Module1_SWD
                 domainUpDown2.Items.Add(VARIABLE.Key);
                 domainUpDown3.Items.Add(VARIABLE.Key);
                 domainUpDown4.Items.Add(VARIABLE.Key);
+                domainUpDown5.Items.Add(VARIABLE.Key);
             }
 
             domainUpDown1.SelectedIndex = 0;
@@ -361,6 +360,41 @@ namespace Module1_SWD
             for (int i = 0; i < data1.Count; i++)
             {
                 chart1.Series[allDecisionClasses.ElementAt(i).ToString()].Points.AddXY(data1[i], data2[i]);
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+            var attribute = domainUpDown5.SelectedItem;
+            var data = orginalAtributesToRecord[attribute.ToString()]; 
+            chart2.Series[0].Points.Clear();
+
+            var distinctDataString = data.Distinct();
+            Dictionary<string,int> dic = new Dictionary<string, int>();
+            for (int i = 0; i < distinctDataString.Count(); i++)
+            {
+                dic.Add(distinctDataString.ElementAt(i).ToString(),0);
+            }
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                dic[data[i].ToString()]++;
+            }
+
+            chart2.Series[0].LegendText = attribute.ToString();
+            foreach (var key in dic.Keys)
+            {
+                chart2.Series[0].Points.AddXY(key, dic[key]);
+            }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // tutaj trzeba dodać czyśzczenie domainupów i wstawianie nowych warotści np attribute_D
+            foreach (var VARIABLE in orginalAtributesToRecord)
+            {
+                domainUpDown5.Items.Add(VARIABLE.Key);
             }
         }
     }
