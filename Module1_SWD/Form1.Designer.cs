@@ -63,22 +63,30 @@
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.button3 = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.domainUpDown4 = new System.Windows.Forms.DomainUpDown();
             this.button4 = new System.Windows.Forms.Button();
             this.domainUpDown3 = new System.Windows.Forms.DomainUpDown();
             this.domainUpDown2 = new System.Windows.Forms.DomainUpDown();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
+            this.domainUpDown5 = new System.Windows.Forms.DomainUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.domainUpDown4 = new System.Windows.Forms.DomainUpDown();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label1 = new System.Windows.Forms.Label();
-            this.domainUpDown5 = new System.Windows.Forms.DomainUpDown();
-            this.button5 = new System.Windows.Forms.Button();
+            this.domainUpDown6 = new System.Windows.Forms.DomainUpDown();
+            this.domainUpDown7 = new System.Windows.Forms.DomainUpDown();
+            this.domainUpDown8 = new System.Windows.Forms.DomainUpDown();
+            this.domainUpDown9 = new System.Windows.Forms.DomainUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -93,9 +101,9 @@
             this.panel1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            this.groupBox3.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileBtn
@@ -337,6 +345,14 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label5);
+            this.tabPage3.Controls.Add(this.label4);
+            this.tabPage3.Controls.Add(this.label3);
+            this.tabPage3.Controls.Add(this.label2);
+            this.tabPage3.Controls.Add(this.domainUpDown9);
+            this.tabPage3.Controls.Add(this.domainUpDown8);
+            this.tabPage3.Controls.Add(this.domainUpDown7);
+            this.tabPage3.Controls.Add(this.domainUpDown6);
             this.tabPage3.Controls.Add(this.panel1);
             this.tabPage3.Controls.Add(this.button3);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
@@ -391,6 +407,14 @@
             this.tabPage4.Text = "Chart 2D";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // domainUpDown4
+            // 
+            this.domainUpDown4.Location = new System.Drawing.Point(6, 62);
+            this.domainUpDown4.Name = "domainUpDown4";
+            this.domainUpDown4.Size = new System.Drawing.Size(274, 22);
+            this.domainUpDown4.TabIndex = 8;
+            this.domainUpDown4.Text = "Choose Decision Class";
+            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(3, 90);
@@ -439,6 +463,64 @@
             this.chart1.Size = new System.Drawing.Size(998, 696);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.button5);
+            this.tabPage5.Controls.Add(this.domainUpDown5);
+            this.tabPage5.Controls.Add(this.label1);
+            this.tabPage5.Controls.Add(this.chart2);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(1431, 708);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Histograms";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(429, 5);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 3;
+            this.button5.Text = "Show";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // domainUpDown5
+            // 
+            this.domainUpDown5.Location = new System.Drawing.Point(242, 7);
+            this.domainUpDown5.Name = "domainUpDown5";
+            this.domainUpDown5.Size = new System.Drawing.Size(180, 22);
+            this.domainUpDown5.TabIndex = 2;
+            this.domainUpDown5.Text = "Choose";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(232, 17);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Choose attribute to see histograms:";
+            // 
+            // chart2
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart2.Legends.Add(legend2);
+            this.chart2.Location = new System.Drawing.Point(3, 35);
+            this.chart2.Name = "chart2";
+            series3.ChartArea = "ChartArea1";
+            series3.Label = "#VAL{N0}";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart2.Series.Add(series3);
+            this.chart2.Size = new System.Drawing.Size(1422, 667);
+            this.chart2.TabIndex = 0;
+            this.chart2.Text = "chart2";
             // 
             // openFileDialog1
             // 
@@ -499,71 +581,73 @@
             this.radioButton1.Text = "Alphabetical";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // domainUpDown4
+            // domainUpDown6
             // 
-            this.domainUpDown4.Location = new System.Drawing.Point(6, 62);
-            this.domainUpDown4.Name = "domainUpDown4";
-            this.domainUpDown4.Size = new System.Drawing.Size(274, 22);
-            this.domainUpDown4.TabIndex = 8;
-            this.domainUpDown4.Text = "Choose Decision Class";
+            this.domainUpDown6.Location = new System.Drawing.Point(146, 9);
+            this.domainUpDown6.Name = "domainUpDown6";
+            this.domainUpDown6.Size = new System.Drawing.Size(180, 22);
+            this.domainUpDown6.TabIndex = 3;
+            this.domainUpDown6.Text = "Choose";
             // 
-            // tabPage5
+            // domainUpDown7
             // 
-            this.tabPage5.Controls.Add(this.button5);
-            this.tabPage5.Controls.Add(this.domainUpDown5);
-            this.tabPage5.Controls.Add(this.label1);
-            this.tabPage5.Controls.Add(this.chart2);
-            this.tabPage5.Location = new System.Drawing.Point(4, 25);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1431, 708);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Histograms";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.domainUpDown7.Location = new System.Drawing.Point(363, 9);
+            this.domainUpDown7.Name = "domainUpDown7";
+            this.domainUpDown7.Size = new System.Drawing.Size(180, 22);
+            this.domainUpDown7.TabIndex = 4;
+            this.domainUpDown7.Text = "Choose";
             // 
-            // chart2
+            // domainUpDown8
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart2.Legends.Add(legend2);
-            this.chart2.Location = new System.Drawing.Point(3, 35);
-            this.chart2.Name = "chart2";
-            series3.ChartArea = "ChartArea1";
-            series3.Label = "#VAL{N0}";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart2.Series.Add(series3);
-            this.chart2.Size = new System.Drawing.Size(1422, 667);
-            this.chart2.TabIndex = 0;
-            this.chart2.Text = "chart2";
+            this.domainUpDown8.Location = new System.Drawing.Point(579, 9);
+            this.domainUpDown8.Name = "domainUpDown8";
+            this.domainUpDown8.Size = new System.Drawing.Size(180, 22);
+            this.domainUpDown8.TabIndex = 5;
+            this.domainUpDown8.Text = "Choose";
             // 
-            // label1
+            // domainUpDown9
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(232, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Choose attribute to see histograms:";
+            this.domainUpDown9.Location = new System.Drawing.Point(820, 9);
+            this.domainUpDown9.Name = "domainUpDown9";
+            this.domainUpDown9.Size = new System.Drawing.Size(180, 22);
+            this.domainUpDown9.TabIndex = 6;
+            this.domainUpDown9.Text = "Choose";
             // 
-            // domainUpDown5
+            // label2
             // 
-            this.domainUpDown5.Location = new System.Drawing.Point(242, 7);
-            this.domainUpDown5.Name = "domainUpDown5";
-            this.domainUpDown5.Size = new System.Drawing.Size(180, 22);
-            this.domainUpDown5.TabIndex = 2;
-            this.domainUpDown5.Text = "Choose";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(126, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(14, 17);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "x";
             // 
-            // button5
+            // label3
             // 
-            this.button5.Location = new System.Drawing.Point(429, 5);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "Show";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(343, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(15, 17);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "y";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(559, 11);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(15, 17);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "z";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(775, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(39, 17);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "color";
             // 
             // Form1
             // 
@@ -590,14 +674,15 @@
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -649,6 +734,14 @@
         private System.Windows.Forms.DomainUpDown domainUpDown5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DomainUpDown domainUpDown9;
+        private System.Windows.Forms.DomainUpDown domainUpDown8;
+        private System.Windows.Forms.DomainUpDown domainUpDown7;
+        private System.Windows.Forms.DomainUpDown domainUpDown6;
     }
 }
 

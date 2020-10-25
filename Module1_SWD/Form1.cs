@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -316,7 +317,28 @@ namespace Module1_SWD
 
         private void button3_Click(object sender, EventArgs e)
         {
-            webBrowser1.Url = new Uri(String.Format("file:///C:/Users/Hubert/Desktop/wykres.html"));
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = "C:\\Users\\"+Environment.UserName+"\\PycharmProjects\\SWD_module1_python\\dist\\Main\\Main.exe";
+
+            ParserToCSV parser = new ParserToCSV(orginalAtributesToRecord);
+            string path = parser.Parse(domainUpDown6.SelectedItem.ToString(), domainUpDown7.SelectedItem.ToString(), domainUpDown8.SelectedItem.ToString());
+
+            start.Arguments = string.Format("{0} {1} {2} {3} {4} {5}", "path="+ path, "x-attr=" + domainUpDown6.SelectedItem.ToString(), "y-attr="+domainUpDown7.SelectedItem.ToString(), "z-attr=" + domainUpDown8.SelectedItem.ToString(), "color=" + domainUpDown9.SelectedItem.ToString(), "C:\\Users\\"+Environment.UserName+"\\Desktop");
+            start.UseShellExecute = false;
+            start.RedirectStandardOutput = true;
+            using (Process process = Process.Start(start))
+            {
+                using (StreamReader reader = process.StandardOutput)
+                {
+                    string result = reader.ReadToEnd();
+                    // this prints 11
+                    Console.Write(result);
+                    webBrowser1.Url = new Uri(String.Format("file:///C:/Users/"+Environment.UserName+"/Desktop/3dChart.html"));
+
+
+                }
+            }
+            Console.Read();
             //webBrowser1.ScriptErrorsSuppressed = true;
             // string fileName = @"C:\Users\Hubert\PycharmProjects\ED_1\WersjaFinalna.py";
             //
@@ -395,6 +417,10 @@ namespace Module1_SWD
             foreach (var VARIABLE in orginalAtributesToRecord)
             {
                 domainUpDown5.Items.Add(VARIABLE.Key);
+                domainUpDown6.Items.Add(VARIABLE.Key);
+                domainUpDown7.Items.Add(VARIABLE.Key);
+                domainUpDown8.Items.Add(VARIABLE.Key);
+                domainUpDown9.Items.Add(VARIABLE.Key);
             }
         }
     }
